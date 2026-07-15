@@ -19,6 +19,7 @@ import {
   staticGroupsBefore,
 } from '../constants'
 import type { SettingsGroupSummary } from '../types/settings'
+import { localizeFormSchema } from '../utils/localize-form-schema'
 import { getGroupIcon } from '../utils/settings'
 import { SettingsRouteContext } from './settings-route-context'
 import { SettingsDetailEmpty } from './SettingsDetailEmpty'
@@ -26,7 +27,7 @@ import { SettingsDetailEmpty } from './SettingsDetailEmpty'
 const SETTINGS_NAV_SCOPE_ID = 'settings-nav'
 
 export function SettingsRouteViewContent() {
-  const { t } = useI18n()
+  const { locale, t } = useI18n()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const params = useParams<{ section?: string }>()
@@ -39,9 +40,17 @@ export function SettingsRouteViewContent() {
     queryKey: adminQueryKeys.settings.schema(),
   })
 
+  const schema = useMemo(
+    () =>
+      schemaQuery.data
+        ? localizeFormSchema(schemaQuery.data, locale)
+        : undefined,
+    [locale, schemaQuery.data],
+  )
+
   const groups = useMemo<SettingsGroupSummary[]>(() => {
     const systemGroups: SettingsGroupSummary[] =
-      schemaQuery.data?.groups.map((group) => ({
+      schema?.groups.map((group) => ({
         description: group.description,
         icon: getGroupIcon(group.icon),
         key: group.key,
@@ -51,7 +60,7 @@ export function SettingsRouteViewContent() {
       })) ?? []
 
     return [...staticGroupsBefore, ...systemGroups, ...staticGroupsAfter]
-  }, [schemaQuery.data?.groups])
+  }, [schema?.groups])
 
   const activeGroupKey = selectedSection ?? queryGroup ?? null
   const activeGroup =
@@ -108,11 +117,11 @@ export function SettingsRouteViewContent() {
   const routeContextValue = useMemo(
     () => ({
       groups,
-      schema: schemaQuery.data,
+      schema,
       onBack: closeDetail,
       onOwnerSaved: invalidateSettings,
     }),
-    [closeDetail, groups, invalidateSettings, schemaQuery.data],
+    [closeDetail, groups, invalidateSettings, schema],
   )
 
   return (

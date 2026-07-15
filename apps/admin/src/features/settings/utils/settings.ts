@@ -132,13 +132,17 @@ export function coerceAIProviderType(value: unknown): AIProviderType {
   return 'openai-compatible'
 }
 
-export function formatAIProviderLabel(provider: AIProviderConfig) {
+export function formatAIProviderLabel(
+  provider: AIProviderConfig,
+  t?: Translator,
+) {
   const name = provider.name.trim()
   if (name) return name
-  return (
-    aiProviderTypeOptions.find((option) => option.value === provider.type)
-      ?.label ?? provider.type
+  const option = aiProviderTypeOptions.find(
+    (item) => item.value === provider.type,
   )
+  if (option && t) return t(option.labelKey)
+  return provider.type
 }
 
 export function getDefaultAIModel(type: AIProviderType) {

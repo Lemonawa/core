@@ -1804,6 +1804,10 @@ export const enUS = {
   'settings.ai.field.maxTokens': 'Max output tokens',
   'settings.ai.field.modelListUrl': 'Model list URL',
   'settings.ai.field.providerType': 'Provider type',
+  'settings.ai.providerType.anthropic': 'Anthropic',
+  'settings.ai.providerType.generic': 'Generic',
+  'settings.ai.providerType.openaiCompatible': 'OpenAI Compatible',
+  'settings.ai.openModelListAria': 'Open model list',
   'settings.ai.placeholder.endpointCompatible':
     'Required, e.g. https://api.deepseek.com',
   'settings.ai.placeholder.endpointDefault':
@@ -2042,6 +2046,7 @@ export const enUS = {
   'settings.session.error.operationFailed': 'Operation failed',
   'settings.session.error.revokeFailed': 'Sign out failed',
   'settings.session.loginAt': 'Logged in at: {time}',
+  'settings.session.unknownUserAgent': 'Unknown user agent',
   'settings.session.success.kicked': 'Device signed out',
   'settings.session.success.others': 'Other devices signed out',
   'settings.session.success.signOut': 'Signed out of current session',

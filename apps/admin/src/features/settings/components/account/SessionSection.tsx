@@ -151,7 +151,7 @@ export function SessionSection() {
                       ) : null}
                     </div>
                     <p className="mt-2 truncate font-mono text-xs text-neutral-600 dark:text-neutral-300">
-                      {session.ua || 'Unknown user agent'}
+                      {session.ua || t('settings.session.unknownUserAgent')}
                     </p>
                     <p className="mt-1 text-xs text-neutral-500">
                       {session.current

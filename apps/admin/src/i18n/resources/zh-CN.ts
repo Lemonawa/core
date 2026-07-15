@@ -1717,6 +1717,10 @@ export const zhCN = {
   'settings.ai.field.maxTokens': '最大输出 tokens',
   'settings.ai.field.modelListUrl': '模型列表地址',
   'settings.ai.field.providerType': '服务类型',
+  'settings.ai.providerType.anthropic': 'Anthropic',
+  'settings.ai.providerType.generic': '通用',
+  'settings.ai.providerType.openaiCompatible': 'OpenAI 兼容',
+  'settings.ai.openModelListAria': '打开模型列表',
   'settings.ai.placeholder.endpointCompatible':
     '必填，如 https://api.deepseek.com',
   'settings.ai.placeholder.endpointDefault': '可选，留空使用默认',
@@ -1938,6 +1942,7 @@ export const zhCN = {
   'settings.session.error.operationFailed': '操作失败',
   'settings.session.error.revokeFailed': '注销失败',
   'settings.session.loginAt': '登录时间：{time}',
+  'settings.session.unknownUserAgent': '未知 User-Agent',
   'settings.session.success.kicked': '已踢出设备',
   'settings.session.success.others': '已踢出其他设备',
   'settings.session.success.signOut': '已注销当前会话',

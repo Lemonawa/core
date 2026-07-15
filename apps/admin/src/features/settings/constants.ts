@@ -15,12 +15,15 @@ export const metaPresetsQueryKey = adminQueryKeys.metaPresets.root
 export const accountQueryKey = adminQueryKeys.settings.accountRoot
 
 export const aiProviderTypeOptions: Array<{
-  label: string
+  labelKey: TranslationKey
   value: AIProviderType
 }> = [
-  { label: 'OpenAI Compatible', value: 'openai-compatible' },
-  { label: 'Anthropic', value: 'anthropic' },
-  { label: 'Generic', value: 'generic' },
+  {
+    labelKey: 'settings.ai.providerType.openaiCompatible',
+    value: 'openai-compatible',
+  },
+  { labelKey: 'settings.ai.providerType.anthropic', value: 'anthropic' },
+  { labelKey: 'settings.ai.providerType.generic', value: 'generic' },
 ]
 
 type SocialOption =

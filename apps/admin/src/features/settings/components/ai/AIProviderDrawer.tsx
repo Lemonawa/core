@@ -173,7 +173,7 @@ export function AIProviderDrawer(props: {
       icon={Settings}
       onClose={props.onClose}
       open={Boolean(provider)}
-      title={provider ? formatAIProviderLabel(provider) : ''}
+      title={provider ? formatAIProviderLabel(provider, t) : ''}
       widthClassName="w-[min(90vw,32rem)]"
     >
       {provider ? (
@@ -192,7 +192,10 @@ export function AIProviderDrawer(props: {
                   type,
                 })
               }
-              options={aiProviderTypeOptions}
+              options={aiProviderTypeOptions.map((option) => ({
+                label: t(option.labelKey),
+                value: option.value,
+              }))}
               value={provider.type}
             />
           </FieldShell>
@@ -242,6 +245,7 @@ export function AIProviderDrawer(props: {
               loading={registryQuery.isFetching}
               models={modelOptions}
               onChange={(defaultModel) => props.onChange({ defaultModel })}
+              openListAriaLabel={t('settings.ai.openModelListAria')}
               placeholder={getAIProviderModelPlaceholder(t, provider.type)}
               value={provider.defaultModel}
             />
@@ -289,6 +293,7 @@ function ModelCombobox(props: {
   loading?: boolean
   models: string[]
   onChange: (value: string) => void
+  openListAriaLabel: string
   placeholder?: string
   value: string
 }) {
@@ -305,7 +310,7 @@ function ModelCombobox(props: {
     >
       <Combobox.Control>
         <Combobox.Input placeholder={props.placeholder} />
-        <Combobox.Trigger aria-label="Open model list">
+        <Combobox.Trigger aria-label={props.openListAriaLabel}>
           {props.loading ? (
             <Loader2 aria-hidden="true" className="size-4 animate-spin" />
           ) : (
